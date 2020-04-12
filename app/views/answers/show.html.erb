@@ -1,0 +1,15 @@
+<p>
+  <strong>Content:</strong>
+  <%= @answer.content %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @answer.user.email %>
+</p>
+
+<% if @answer.user == current_user %>
+  <%= link_to 'Edit Answer', edit_question_answer_path([@question, @answer]) %> |
+<% end %>
+
+<%= link_to 'Back', root_path %>

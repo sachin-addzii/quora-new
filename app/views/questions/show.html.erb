@@ -1,0 +1,29 @@
+<p>
+  <strong>Content:</strong>
+  <%= @question.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%=button_to @question.user.email, follow_user_path(@question.user), class: 'follow_user', method: :post %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%=button_to @question.topic.name, follow_topic_path(@question.topic), class: 'follow_topic', method: :post %>
+</p>
+
+<h4>Answers</h4>
+
+<% @question.answers.each do |answer| %>
+  <td><%= link_to(answer.content, [@question, answer], class: 'answer') %></td>
+</br>
+<% end %>
+
+<%= link_to 'Add Answer', new_question_answer_path(@question) %>
+
+<% if @question.user == current_user %>
+  <%= link_to 'Edit Question', edit_question_path(@question) %> |
+<% end %>
+
+<%= link_to 'Back', root_path %>
